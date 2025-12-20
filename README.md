@@ -22,3 +22,26 @@ simple nutritional data per 100 grams.
 
 ---
 
+## Evaluation Method
+
+Each product is evaluated using nutritional data per 100 grams.
+
+### Energy Score
+Energy is calculated from macronutrients:
+
+Energy = (4 × proteins) + (9 × fats) + (4 × carbohydrates)
+
+### Nutritional Value Score
+Nutritional quality favors protein content over fats and carbohydrates:
+
+Quality = proteins / (proteins + fats + carbohydrates)
+
+Nutritional Value = Energy × Quality
+
+### Final Score
+The final convenience score is calculated as:
+
+Final Score = Nutritional Value / Price
+
+A higher final score indicates better value for money.
+
