@@ -45,3 +45,17 @@ Final Score = Nutritional Value / Price
 
 A higher final score indicates better value for money.
 
+## Build and Run
+```bash
+gcc main.c -o FoodRater
+./FoodRater
+```
+
+
+
+## Author
+
+ShiroiShi  
+Computer Science student 
+
+
