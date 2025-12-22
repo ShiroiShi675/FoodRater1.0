@@ -7,6 +7,7 @@
 #define VAL_FATS 9
 #define VAL_CARBOHYDRATES 4
 
+typedef enum{FINAL,ENERGY}TypeLadder;
 typedef enum {EXIT,INSERT,REMOVE,SEARCH,PRINT,MODIFY,CALCULATE} Choice;
 typedef struct {
     char name[DIM_STRING+1];
@@ -81,23 +82,49 @@ void print_ladder(int numproducts,Product products[numproducts]) {
     int i,j;
     Product temp_product;
     Product* products_copy = products;
+    TypeLadder choice_ranking = FINAL;
+    printf("\nChoose ranking mode(0 = FinalScore,1 = EnergyScore)\n");
+    printf("Choice: ");
+    scanf("%d",&choice_ranking);
 
-    for (i = 0;i < numproducts;i++) {
-        for (j = 0;j < numproducts;j++) {
-            if (products[i].unique_score > products[j].unique_score) {
-                temp_product= products_copy[i];
-                products_copy[i] = products_copy[j];
-                products_copy[j] = temp_product;
+    if (choice_ranking == FINAL) {
+        for (i = 0;i < numproducts;i++) {
+            for (j = 0;j < numproducts;j++) {
+                if (products[i].unique_score > products[j].unique_score) {
+                    temp_product= products_copy[i];
+                    products_copy[i] = products_copy[j];
+                    products_copy[j] = temp_product;
+                }
             }
         }
     }
-    printf("\n-------Ranking------- \n");
-    for (i = 0;i < numproducts;i++) {
-
-        printf("%s: %.2f\n",products_copy[i].name,products[i].unique_score);
+    else if (choice_ranking == ENERGY) {
+        for (i = 0;i < numproducts;i++) {
+            for (j = 0;j < numproducts;j++) {
+                if (products[i].energy_score > products[j].energy_score) {
+                    temp_product= products_copy[i];
+                    products_copy[i] = products_copy[j];
+                    products_copy[j] = temp_product;
+                }
+            }
+        }
     }
-    printf("-------Ranking------- \n\n");
+    if (choice_ranking == FINAL) {
+        printf("\n-------Ranking------- \n");
+        for (i = 0;i < numproducts;i++) {
 
+            printf("(%d)%s: %.2f\n",i+1,products_copy[i].name,products[i].unique_score);
+        }
+        printf("-------Ranking------- \n\n");
+    }
+    else if (choice_ranking == ENERGY) {
+        printf("\n-------Ranking------- \n");
+        for (i = 0;i < numproducts;i++) {
+
+            printf("(%d)%s: %.2f\n",i+1,products_copy[i].name,products[i].energy_score);
+        }
+        printf("-------Ranking------- \n\n");
+    }
 }
 void calculate_data() {
     float absolute_price;
