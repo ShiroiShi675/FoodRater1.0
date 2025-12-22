@@ -16,7 +16,7 @@ simple nutritional data per 100 grams.
   - Energy score
   - Nutritional value score
   - Final convenience score
-- Ranking of products based on final score
+- Ranking of products based on final score or energy score
 - Persistent storage using file I/O
 - ASCII banner and interactive menu
 
