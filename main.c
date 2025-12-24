@@ -1,3 +1,4 @@
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -43,7 +44,10 @@ Product* add_product(int* numproducts,Product* product) {
     do {
         printf("\nEnter product name(no spaces): ");
         scanf("%s",product[*numproducts].name);
-    }while (strlen(product[*numproducts].name) == 0);
+        if (strlen(product[*numproducts].name) == 0 || strlen(product[*numproducts].name) > 30) {
+            printf("Invalid input!\n");
+        }
+    }while (strlen(product[*numproducts].name) == 0 || strlen(product[*numproducts].name) > 30 );
     while (getchar() != '\n');
     printf("Enter product price(100g): ");
     scanf("%f",&product[*numproducts].price);
@@ -249,29 +253,30 @@ int main(void) {
     }
     char product_name[DIM_STRING+1];
     char product_line[DIM_STRING+1];
+    bool reading = true;
     float product_price;
     float product_energy_score;
     float product_nutritional_score;
     float product_final_score;
-    while (1) {
-        if (!fgets(product_name, DIM_STRING+1, pf)) break;
+    while (reading) {
+        if (!fgets(product_name, DIM_STRING+1, pf)) reading = false;
         product_name[strcspn(product_name, "\n")] = '\0';
         products = (Product*) realloc(products,(numproducts+1) * sizeof(Product));
         strcpy(products[numproducts].name,product_name);
 
-        if (!fgets(product_line, DIM_STRING+1, pf)) break;
+        if (!fgets(product_line, DIM_STRING+1, pf)) reading = false;
         product_price = strtof(product_line, NULL);
         products[numproducts].price = product_price;
 
-        if (!fgets(product_line, DIM_STRING+1, pf)) break;
+        if (!fgets(product_line, DIM_STRING+1, pf)) reading = false;
         product_energy_score = strtof(product_line, NULL);
         products[numproducts].energy_score = product_energy_score;
 
-        if (!fgets(product_line, DIM_STRING+1, pf)) break;
+        if (!fgets(product_line, DIM_STRING+1, pf)) reading = false;
         product_nutritional_score = strtof(product_line, NULL);
         products[numproducts].nutritional_value_score = product_nutritional_score;
 
-        if (!fgets(product_line, DIM_STRING+1, pf)) break;
+        if (!fgets(product_line, DIM_STRING+1, pf)) reading = false;
         product_final_score = strtof(product_line, NULL);
         products[numproducts].unique_score = product_final_score;
 
