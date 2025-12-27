@@ -70,6 +70,5 @@ FoodRater.exe
 ## Author
 
 ShiroiShi  
-Computer Science student 
 
 
