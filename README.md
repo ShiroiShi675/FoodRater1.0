@@ -45,12 +45,26 @@ Final Score = Nutritional Value / Price
 
 A higher final score indicates better value for money.
 
+
 ## Build and Run
+
+Clone the repository:
+   ```bash
+   git clone https://github.com/ShiroiShi675/FoodRater1.0.git
+   cd FoodRater1.0
+   ```
+### Linux / macOS
+
 ```bash
-gcc main.c -o FoodRater
+gcc FoodRater.c -o FoodRater
 ./FoodRater
 ```
 
+### Windows
+```bash
+gcc FoodRater.c -o FoodRater.exe
+FoodRater.exe
+```
 
 
 ## Author
